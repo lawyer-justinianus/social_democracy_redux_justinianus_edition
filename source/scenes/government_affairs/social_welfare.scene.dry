@@ -42,7 +42,7 @@ go-to: welfare_funded_pre_depression if not legislature_enabled; legislative_men
 We propose a bill to fund welfare.
 
 @welfare_funded_pre_depression
-on-arrival: budget -= 1; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); welfare += 1; reformist_dissent -= 5; labor_dissent -= 5; center_dissent -= 5; left_dissent -= 5; neorevisionist_dissent -= 5; coalition_dissent += 1 if budget <= 1; coalition_dissent += 1 if welfare > 1; welfare_goal_completed += 1; inflation += 0.3; unemployed -= 0.4; economic_growth += 0.2;
+on-arrival: budget -= 1; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); welfare += 1; reformist_dissent -= 5; labor_dissent -= 5; center_dissent -= 5; left_dissent -= 5; neorevisionist_dissent -= 5; coalition_dissent += 1 if budget <= 1; coalition_dissent += 1 if welfare > 1; welfare_goal_completed += 1; inflation += 0.3; workers += 0.4; unemployed -= 0.4; economic_growth += 0.2;
 
 We have increased welfare spending. Our proletarian base is pleased.
 
