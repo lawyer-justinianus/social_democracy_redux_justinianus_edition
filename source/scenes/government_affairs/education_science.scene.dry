@@ -60,7 +60,7 @@ go-to: kwg_done if not legislature_enabled; legislative_menu if legislature_enab
 We propose the expansion of funding for the Kaiser Wilhelm Society.
 
 @kwg_done
-on-arrival: budget -= 1; science += 1; kwg_research += 1; economic_growth += 0.3 if economic_growth <= 8; new_middle_spd += 5*(1-dissent); ddp_relation += 5*(1-dissent); unemployed -= 0.2 if unemployed >= 4; west_relation += 1; science_funding += 1
+on-arrival: budget -= 1; science += 1; kwg_research += 1; economic_growth += 0.3 if economic_growth <= 8; new_middle_spd += 5*(1-dissent); ddp_relation += 5*(1-dissent); new_middle += 0.2 if unemployed >= 4; unemployed -= 0.2 if unemployed >= 4; west_relation += 1; science_funding += 1
 
 The Kaiser Wilhelm Society is one of the most respected scientific research institutions in the world, with physicist Albert Einstein as its most famous employee. Our research program is to provide the Society with additional resources to hire and train scientists and conduct fundamental research, based on the scientists' own interests.
 
@@ -74,7 +74,7 @@ go-to: applied_done if not legislature_enabled; legislative_menu if legislature_
 We propose the expansion of funding for applied research.
 
 @applied_done
-on-arrival: budget -= 1; science += 1; applied_research += 1; economic_growth += 0.5 if economic_growth <= 8 and applied_research <= 1; economic_growth += 3 if applied_research > 1; new_middle_spd += 5*(1-dissent); workers_spd += 3*(1-dissent); ddp_relation += 5*(1-dissent); unemployed -= 0.5 if unemployed >= 4; capital_strike_progress -= 1 if capital_strike_progress > 0; science_funding += 1
+on-arrival: budget -= 1; science += 1; applied_research += 1; economic_growth += 0.5 if economic_growth <= 8 and applied_research <= 1; economic_growth += 3 if applied_research > 1; new_middle_spd += 5*(1-dissent); workers_spd += 3*(1-dissent); ddp_relation += 5*(1-dissent); new_middle += 0.2 if unemployed >= 4; workers += 0.3 if unemployed >= 4; unemployed -= 0.5 if unemployed >= 4; capital_strike_progress -= 1 if capital_strike_progress > 0; science_funding += 1
 
 Our research program focuses on collaborating with industry to develop useful technologies, creating new research institutions for applied science. This collaboration is focused on economic growth and development.
 
@@ -88,7 +88,7 @@ go-to: medical_done if not legislature_enabled; legislative_menu if legislature_
 We propose the expansion of funding for medical research.
 
 @medical_done
-on-arrival: budget -= 1; science += 1; medical_research += 1; economic_growth += 0.4 if economic_growth <= 8; new_middle_spd += 5*(1-dissent); workers_spd += 3*(1-dissent); ddp_relation += 5*(1-dissent); unemployed -= 0.2 if unemployed >= 4; science_funding += 1
+on-arrival: budget -= 1; science += 1; medical_research += 1; economic_growth += 0.4 if economic_growth <= 8; new_middle_spd += 5*(1-dissent); workers_spd += 3*(1-dissent); ddp_relation += 5*(1-dissent); new_middle += 0.2 if unemployed >= 4; unemployed -= 0.2 if unemployed >= 4; science_funding += 1
 
 Our research program focuses on medical research to improve the treatment of diseases and public health. [? if change_sex: Some of our medical advancements include new methods for sex change surgery and hormone therapy for transsexual individuals. ?]
 
@@ -103,7 +103,7 @@ go-to: cut_science_done if not legislature_enabled; legislative_menu if legislat
 We propose the cutting of science funding.
 
 @cut_science_done
-on-arrival: budget += 1; science -= 1; science_funding -= 1; applied_research -= 0.33; kwg_research -= 0.33; medical_research -= 0.33; economic_growth -= 0.5; new_middle_spd -= 5; workers_spd -= 2; ddp_relation -= 5; unemployed += 0.3
+on-arrival: budget += 1; science -= 1; science_funding -= 1; applied_research -= 0.33; kwg_research -= 0.33; medical_research -= 0.33; economic_growth -= 0.5; new_middle_spd -= 5; workers_spd -= 2; ddp_relation -= 5; new_middle -= 0.3; unemployed += 0.3
 
 We have cut funding for science. This has a negative effect on our economic growth, and unemployed scientists are less likely to support the SPD.
 
@@ -133,7 +133,7 @@ Are you sure about this? The Weimar Coalition had an agreement to not touch reli
 - @cancel_advisor_action
 
 @secularize_2
-on-arrival: secularized = 1; catholics_spd -= 15; z_relation -= 15; dvp_relation += 6*(1-dissent); ddp_relation += 6*(1-dissent); kpd_relation += 6*(1-dissent); new_middle_spd += 3*(1-dissent); workers_spd += 3*(1-dissent); education_science += 0.5; new_middle_ddp += 4; new_middle_dvp += 4
+on-arrival: secularized = 1; catholics_spd -= 15; catholics -= 0.5; z_relation -= 15; dvp_relation += 6*(1-dissent); ddp_relation += 6*(1-dissent); kpd_relation += 6*(1-dissent); new_middle_spd += 3*(1-dissent); workers_spd += 3*(1-dissent); education_science += 0.5; new_middle_ddp += 2; new_middle_dvp += 2
 go-to: vote_of_no_confidence.vonc_menu if in_weimar_coalition or in_grand_coalition or in_popular_front or in_emergency_government
 
 # instant VONC from zentrum
@@ -155,7 +155,7 @@ go-to: public_hs_done if not legislature_enabled; legislative_menu if legislatur
 We propose the expansion of public high school funding.
 
 @public_hs_done
-on-arrival: budget -= 1; public_hs += 1; workers_spd += 6*(1-dissent); unemployed_spd += 3*(1-dissent); prussian_police_loyalty += 0.04; education_science += 0.5; unemployed -= 0.2; economic_growth += 0.2; pro_republic += 4*(1-dissent);
+on-arrival: budget -= 1; public_hs += 1; workers_spd += 6*(1-dissent); unemployed_spd += 3*(1-dissent); prussian_police_loyalty += 0.04; education_science += 0.5; new_middle += 0.1; workers += 0.1; unemployed -= 0.2; economic_growth += 0.2; pro_republic += 4*(1-dissent);
 
 # this makes the bureaucracy more proletarian
 We have funded more public secondary schools so that proletarian children may receive the same education as middle and upper-class children, and can be prepared for universities.
@@ -221,7 +221,7 @@ Our educational curriculum should be focused on the humanities, including arts, 
 @vocational_major
 title: Vocational curriculum
 subtitle: Useful technical skills for future careers
-on-arrival: curriculum_timer = 50; major_curriculum = "vocational"; dvp_relation += 3*(1-dissent); ddp_relation += 3*(1-dissent); workers_spd += 4*(1-dissent); rural_spd += 2*(1-dissent); unemployed_spd += 3*(1-dissent); new_middle_spd -= 1; unemployed -= 0.1; education_science += 0.5
+on-arrival: curriculum_timer = 50; major_curriculum = "vocational"; dvp_relation += 3*(1-dissent); ddp_relation += 3*(1-dissent); workers_spd += 4*(1-dissent); rural_spd += 2*(1-dissent); unemployed_spd += 3*(1-dissent); new_middle_spd += 1; workers += 0.1; unemployed -= 0.1; education_science += 0.5
 go-to: curriculum_minor
 
 Education should be focused on providing a useful hands-on education, and teach the skills that will be most useful for students' future lives.
