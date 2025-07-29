@@ -198,7 +198,7 @@ We initiate a petition for the legalization of abortion, which quickly whips up 
 
 @abortion_success
 view-if: referendum_succeed
-on-arrival: abortion_rights += 1; womens_rights += 1; z_relation -= 5; catholics -= 0.2; catholics_spd -= 5; dvp_relation -= 5; new_middle_spd += 2*(1-dissent); new_middle_ddp += 1; workers_z += 3; new_middle_z += 3; old_middle_z += 3; old_middle_dnvp += 2; rural_dnvp += 2; workers_nsdap -= 3; new_middle_nsdap -= 3; old_middle_nsdap -= 1; rural_nsdap -= 1; unemployed_nsdap -= 2; unemployed_z += 3; unemployed_spd += 3*(1-dissent)
+on-arrival: abortion_rights += 1; womens_rights += 1; z_relation -= 5; catholics -= 0.3; catholics_spd -= 5; dvp_relation -= 5; new_middle_spd += 2*(1-dissent); new_middle_ddp += 1; workers_z += 3; new_middle_z += 3; old_middle_z += 3; old_middle_dnvp += 2; rural_dnvp += 2; workers_nsdap -= 3; new_middle_nsdap -= 3; old_middle_nsdap -= 1; rural_nsdap -= 1; unemployed_nsdap -= 2; unemployed_z += 3; unemployed_spd += 3*(1-dissent)
 
 The referendum succeeds with [+ referendum_support +]% of the vote! This has heartened our more progressive supporters, while hurting our relations with the Center Party. With the increasing political discourse around abortion, the religiously-oriented Center Party and DNVP have gained conservative votes at the expense of the NSDAP.
 
