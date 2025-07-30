@@ -925,7 +925,7 @@ With our triumph over the reactionaries, we have for a short while near free-rei
 @land_seizure
 view-if: land_reform < 4 and not land_seizure
 subtitle: -[+ land_seizure_cost +] budget.
-on-arrival: budget -= land_seizure_cost; land_seizure = 1; land_reform += land_seizure_cost; pro_republic -= (4*land_seizure_cost); coalition_dissent += land_seizure_cost; rural_spd += land_seizure_cost*(5*(1-dissent)); rural_nsdap -= land_seizure_cost*(4*(1-dissent)); unemployed -= land_seizure_cost if unemployed >= 5; dvp_relation -= (5*land_seizure_cost); z_relation -= (4*land_seizure_cost); left_strength += (8*land_seizure_cost); left_dissent -= (5*land_seizure_cost); rural_sol += (3*land_seizure_cost); rural_policy += land_seizure_cost; sa_strength += 25; sh_strength += 10; sa_militancy += 0.05
+on-arrival: budget -= land_seizure_cost; land_seizure = 1; land_reform += land_seizure_cost; pro_republic -= (4*land_seizure_cost); coalition_dissent += land_seizure_cost; rural_spd += land_seizure_cost*(5*(1-dissent)); rural_nsdap -= land_seizure_cost*(4*(1-dissent)); rural += land_seizure_cost if unemployed >= 5; unemployed -= land_seizure_cost if unemployed >= 5; dvp_relation -= (5*land_seizure_cost); z_relation -= (4*land_seizure_cost); left_strength += (8*land_seizure_cost); left_dissent -= (5*land_seizure_cost); rural_sol += (3*land_seizure_cost); rural_policy += land_seizure_cost; sa_strength += 25; sh_strength += 10; sa_militancy += 0.05
 
 In a sweeping program of land reform, we seize aristocratic estates and distribute them to the landless farmers working them. The bourgeois parties denounce this abuse of our post-war position, calling it unconstitutional, while the aristocrats who's lands we seize turn to the remaining Nazi insurgents for solasce.
 
@@ -938,7 +938,7 @@ on-arrival: mass_nationalization = 1; ddp_relation -= 4; z_relation -= 5; dvp_re
 go-to: nationalize_deficit if budget < nationalize_budget; nationalize_no_deficit if budget >= nationalize_budget
 
 @nationalize_no_deficit
-on-arrival: nationalization_progress += 1; capital_strike_progress += 2; unemployed -= 3.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3; workers += 2.5; budget -= nationalize_budget; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 1; dvp_relation -= 4; left_dissent -= 5; new_middle_spd -= 2 if not new_middle_conscious; old_middle_spd -= 3; economy_goal_completed += 1; inflation += 2
+on-arrival: nationalization_progress += 1; capital_strike_progress += 2; workers += 3.5 if unemployed >= 6; workers += 1.2 if works_councils >= 3; unemployed -= 3.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3; workers += 2.5; budget -= nationalize_budget; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 1; dvp_relation -= 4; left_dissent -= 5; new_middle_spd -= 2 if not new_middle_conscious; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 3; economy_goal_completed += 1; inflation += 2
 achievement: wirtschaftspolitik
 
 [? if nationalization_progress == 1 : We have begun purchasing idling enterprises from the capitalists[? if works_councils >= 1: , and running them in coordination with empowered works councils ?]. By keeping production going, we can stave off the rising unemployment. ?]
@@ -962,7 +962,7 @@ title: Take a budget deficit to fund the nationalization program.
 choose-if: left_strength > reformist_strength + center_strength or woytinsky_advisor == 1
 subtitle: [? if woytinsky_advisor: Woytinsky can bring us around to supporting a budget deficit. ?]
 unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: The party does not yet support budget deficits for this purpose. ?] [? if not woytinsky_advisor : Perhaps bringing on an advisor might help make this action palatable? ?]
-on-arrival: nationalization_progress += 1; capital_strike_progress += 3; unemployed -= 3 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3; budget -= nationalize_budget; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 2; dvp_relation -= 6; z_relation -= 4; new_middle_spd -= 3; new_middle_spd += 2 if new_middle_conscious; old_middle_spd -= 3; economy_goal_completed += 1; inflation += 3
+on-arrival: nationalization_progress += 1; capital_strike_progress += 3; workers += 3 if unemployed >= 6; workers += 1.2 if works_councils >= 3; unemployed -= 3 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3; budget -= nationalize_budget; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 2; dvp_relation -= 6; z_relation -= 4; new_middle_spd -= 3 if not new_middle_conscious; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 3; economy_goal_completed += 1; inflation += 3
 achievement: wirtschaftspolitik
 
 [? if woytinsky_advisor: Most of the party, even on the left, are opposed to budget deficits for any purpose, with the exception of Wladimir Woytinsky. While he did not originally support the left's "transformational" plan, he has come around, and has persuaded the party and the Finance Ministry to support budget deficits in limited cases, for the purpose of exiting from the depression. ?]
@@ -980,7 +980,7 @@ title: Nationalize without compensation.
 subtitle: There is no reason why we should not simply take over idle factories. This is likely to provoke a confrontation with the capitalists.
 unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: The bulk of the party does not support this quasi-legal action. ?] [? if judicial_reform < 3 : The judiciary would oppose this action. ?]
 choose-if: left_strength > reformist_strength + center_strength and judicial_reform >= 3
-on-arrival: nationalization_progress += 1; capital_strike_progress += 7; coup_progress += 3; unemployed -= 2.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3 and unemployed >= 3; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 6*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 8; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 4
+on-arrival: nationalization_progress += 1; capital_strike_progress += 7; coup_progress += 3; workers += 2.5 if unemployed >= 6; workers += 1.2 if works_councils >= 3 and unemployed >= 3; unemployed -= 2.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3 and unemployed >= 3; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 6*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 4 if not new_middle_conscious; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 8; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 4
 achievement: wirtschaftspolitik
 
 The capitalists are, predictably, up in arms about our policy of nationalization without compensation. They call it illegal expropriation, and it is. Nevertheless, it is clear that they have failed by keeping their factories idle, and we must take radical action.
@@ -996,7 +996,7 @@ title: Empower workers to take over factories.
 subtitle: We can promise to legalize factory occupations, giving the factories over to worker unions. This is highly confrontational, and would likely provoke a reaction from right-wing militants as well as capitalists.
 unavailable-subtitle: [? if left_strength <= reformist_strength + neorevisionist_strength : The bulk of the party does not support this radical action. ?] [? if judicial_reform < 3 : The judiciary would oppose this action. ?] [? if rb_militancy < 0.25 : If we increased the strength of our paramilitary forces, perhaps we could do this. ?] [? if works_councils < 1 : We need the support of the works councils first. ?]
 choose-if: left_strength > reformist_strength + neorevisionist_strength and (judicial_reform >= 3 or rb_militancy >= 0.25) and works_councils >= 1
-on-arrival: nationalization_progress += 1; capital_strike_progress += 6; unemployed -= 3 if unemployed >= 6; unemployed -= 1.5 if works_councils >= 3 and unemployed > 4; works_program += 1; workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; workers_nsdap -= 5*(1-dissent); unemployed_nsdap -= 5*(1-dissent); left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 2 if new_middle_conscious; old_middle_spd -= 10; factory_takeovers += 1; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 3
+on-arrival: nationalization_progress += 1; capital_strike_progress += 6; workers += 3 if unemployed >= 6; workers += 1.5 if works_councils >= 3 and unemployed > 3; unemployed -= 3 if unemployed >= 6; unemployed -= 1.5 if works_councils >= 3 and unemployed > 3; works_program += 1; workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; workers_nsdap -= 5*(1-dissent); unemployed_nsdap -= 5*(1-dissent); left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5 if not new_middle_conscious; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 10; factory_takeovers += 1; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 3
 achievement: wirtschaftspolitik
 
 The capitalists are, predictably, up in arms about our policy of legalizing factory occupations. They call it illegal expropriation, and it is. Nevertheless, it is clear that they have failed, and we must take radical action.
@@ -1006,7 +1006,7 @@ The capitalists are, predictably, up in arms about our policy of legalizing fact
 @wealth_seizure
 view-if: not wealth_seized
 subtitle: +6 budget.
-on-arrival: wealth_seized = 1; upper_tax_rates += 3; coalition_dissent += 3; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); z_relation -= 10; ddp_relation -= 12; dvp_relation -= 16; pro_republic -= 8; budget += 6; capital_strike_progress += 15; old_middle_spd *= 0.25; new_middle_spd *= 0.6
+on-arrival: wealth_seized = 1; upper_tax_rates += 3; coalition_dissent += 3; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); z_relation -= 10; ddp_relation -= 12; dvp_relation -= 16; pro_republic -= 8; budget += 10; capital_strike_progress += 15; old_middle_spd *= 0.25; new_middle_spd *= 0.6 if not new_middle_conscious; new_middle_spd += 3 if new_middle_conscious
 
 We seize the assets of the rich and even the Reichsbank in a mass redistribution of wealth, greatly increasing our budget. Of course, the bourgeoisie and their parties are immediately up in arms about this, threatening our provisional governing coalition.
 
@@ -1015,7 +1015,7 @@ We seize the assets of the rich and even the Reichsbank in a mass redistribution
 @dnvp_ban
 view-if: not dnvp_banned
 subtitle: We will deny the remaining reactionaries a party.
-on-arrival: dnvp_banned = 1; dvp_relation -= 5; z_relation -= 4 if z_party_leader != "Joos"; pro_republic -= 4; old_middle_dnvp *= 0.9; rural_dnvp *= 0.95; new_middle_dnvp *= 0.8; sh_strength *= 0.9; sh_militancy -= 0.05
+on-arrival: dnvp_banned = 1; dvp_relation -= 5; z_relation -= 4; z_relation += 4 if z_party_leader != "Joos"; pro_republic -= 1; old_middle_dnvp *= 0.8; rural_dnvp *= 0.8; new_middle_dnvp *= 0.7; sh_strength *= 0.7; sh_militancy -= 0.1
 
 Recognizing the DNVP's own participation in the far-right struggle against the Republic, we have banned their party as well, pre-empting a potential moderation in the absence of Hugenberg to lead them.
 
@@ -1024,7 +1024,7 @@ Recognizing the DNVP's own participation in the far-right struggle against the R
 @dvp_ban
 view-if: not dvp_banned and (left_strength > reformist_strength + center_strength) and dnvp_banned
 subtitle: The DVP are hardly better than the other reactionaries.
-on-arrival: dvp_banned = 1; reformist_dissent += 15; center_dissent += 5; z_relation -= 10; ddp_relation -= 10; coalition_dissent += 2; pro_republic -= 7; new_middle_spd -= 4; old_middle_spd -= 5
+on-arrival: dvp_banned = 1; reformist_dissent += 15; center_dissent += 5; z_relation -= 6; z_relation += 4 if z_party_leader != "Joos"; ddp_relation -= 10; coalition_dissent += 2; old_middle_dvp *= 0.8; rural_dvp *= 0.8; new_middle_dvp *= 0.7; pro_republic -= 5; new_middle_spd -= 4 if not new_middle_conscious; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 5
 
 We have banned the DVP, as well as many smaller adjacent bourgeois reactionary parties. To allow them to continue to exist in our new Republic is a threat to our socialist principles. Unfortunately, Zentrum and the DDP/DStP do not see it that way.
 
@@ -1033,7 +1033,7 @@ We have banned the DVP, as well as many smaller adjacent bourgeois reactionary p
 @enable
 view-if: not enabling_act
 subtitle: This will be controversial.
-on-arrival: pro_republic -= 10; z_relation -= 6; z_relation -= 6 if z_party_leader == "Kaas"; ddp_relation -= 5; dvp_relation -= 12; enabling_act = 1
+on-arrival: pro_republic -= 10; z_relation -= 10; z_relation -= 6 if z_party_leader == "Kaas"; ddp_relation -= 5; dvp_relation -= 12; enabling_act = 1
 
 We pass an Enabling Act, giving the cabinet greatly heightened powers to combat the Nazis and whipe them out entirely. 
 
@@ -1088,7 +1088,7 @@ We refuse to instate a classist and fundamentally undemocratic form of governanc
 
 @agenda_kpd
 view-if: president == "Thälmann"
-on-arrival: workers_kpd += 10; workers_spd -= 5; unemployed_kpd += 15; unemployed_spd -= 5; unemployed_nsdap -= 5; rfb_strength += 100; rb_strength -= 75; rfb_militancy += 0.05; in_left_front = 1; in_weimar_coalition = 0; in_grand_coalition = 0; in_popular_front = 0; in_spd_majority = 0;
+on-arrival: workers_kpd += 10; workers_spd += 5; unemployed_kpd += 15; unemployed_spd += 5; unemployed_nsdap -= 5; rfb_strength += 100; rb_strength += 75; rfb_militancy += 0.05; in_left_front = 1; in_weimar_coalition = 0; in_grand_coalition = 0; in_popular_front = 0; in_spd_majority = 0;
 
 The defeat of the reactionaries leaves us and our socialist partners in near uncontested control over the country. [? if president == "Thälmann" : However, the KPD has a significant upper hand in this relationship, so we must be careful. ?]
 
@@ -1484,7 +1484,7 @@ In order to finance their other programs, the KPD have made a plan for the seizu
 - @refuse_seizure: Convince the KPD to drop the decree.
 
 @accept_seizure
-on-arrival: wealth_decided = 1; wealth_seized = 1; upper_tax_rates += 3; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); z_relation -= 10; ddp_relation -= 12; dvp_relation -= 16; pro_republic -= 8; budget += 6; capital_strike_progress += 15; old_middle_spd *= 0.25; new_middle_spd *= 0.6
+on-arrival: wealth_decided = 1; wealth_seized = 1; upper_tax_rates += 3; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); z_relation -= 10; ddp_relation -= 12; dvp_relation -= 16; pro_republic -= 8; budget += 10; capital_strike_progress += 15; old_middle_spd *= 0.25; new_middle_spd *= 0.6 if not new_middle_conscious; new_middle_spd += 3 if new_middle_conscious
 
 We allow the KPD to go forward with the decree, greatly increasing the budget available to be spent by the government on other directives.
 
@@ -1506,7 +1506,7 @@ Wanting to bring the economy under state control, the KPD has prepared a decree 
 - @refuse_nationalization: Convince the KPD to drop the decree.
 
 @allow_nationalization
-on-arrival: left_decided = 1; nationalization_progress += 1; pro_republic -= 6; capital_strike_progress += 2; unemployed -= 3.5 if unemployed >= 6; new_middle_kpd += 5 if economic_minister_party == "KPD"; unemployed -= 1.2 if works_councils >= 3; workers += 2.5; budget -= nationalize_budget; works_program += 1; workers_kpd += 6; unemployed_kpd += 4; coalition_dissent += 1; dvp_relation -= 4; left_dissent -= 5; old_middle_spd -= 2; economy_goal_completed += 1; inflation += 2
+on-arrival: left_decided = 1; nationalization_progress += 1; pro_republic -= 6; capital_strike_progress += 2; workers += 3.5 if unemployed >= 6; unemployed -= 3.5 if unemployed >= 6; new_middle_kpd += 5 if economic_minister_party == "KPD"; workers += 1.2 if works_councils >= 3; unemployed -= 1.2 if works_councils >= 3; workers += 2.5; budget -= nationalize_budget; works_program += 1; workers_kpd += 6; unemployed_kpd += 4; coalition_dissent += 1; dvp_relation -= 4; left_dissent -= 5; old_middle_spd -= 2; economy_goal_completed += 1; inflation += 2
 
 We allow the decree to go ahead, with large swaths of the economy soon being quickly brought under public control. [? if economic_minister_party == "KPD" : Control over the state-run industries falls to the KPD-run Economic Ministry, leading to an expanding bureaucratic base of their party. ?]
 
